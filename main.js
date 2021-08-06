@@ -1,47 +1,45 @@
-// draggable initial
-interact('.draggable').draggable({
-  onmove: dragMoveListener,
-  modifiers: [
-    interact.modifiers.restrictRect({
-      restriction: 'parent',
-      endOnly: true,
-    }),
-  ],
-});
+const list_items = document.querySelectorAll('.list-item');
+const lists = document.querySelectorAll('.list');
 
-// drag move listener
-function dragMoveListener(event) {
-  const { target } = event;
-  const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-  const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+let draggedItem = null;
 
-  // change component style
-  const transform = (target.style.webkitTransform = target.style.transform = `translate(${x}px,${y}px)`);
+for (let i = 0; i < list_items.length; i++) {
+  const item = list_items[i];
 
-  // set data-x and data-y
-  const dataX = target.setAttribute('data-x', x);
-  const dataY = target.setAttribute('data-y', y);
+  item.addEventListener('dragstart', function () {
+    draggedItem = item;
+    setTimeout(function () {
+      item.style.display = 'none';
+    }, 0);
+  });
 
-  // let getdataX = dataX.getAttribute('data-x', x);
-  // console.log(transform);
+  item.addEventListener('dragend', function () {
+    setTimeout(function () {
+      draggedItem.style.display = 'block';
+      draggedItem = null;
+    }, 0);
+  });
+
+  for (let j = 0; j < lists.length; j++) {
+    const list = lists[j];
+
+    list.addEventListener('dragover', function (e) {
+      e.preventDefault();
+    });
+
+    list.addEventListener('dragenter', function (e) {
+      e.preventDefault();
+      this.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+    });
+
+    list.addEventListener('dragleave', function (e) {
+      this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+    });
+
+    list.addEventListener('drop', function (e) {
+      console.log('drop');
+      this.append(draggedItem);
+      this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+    });
+  }
 }
-
-// dropzone initial
-interact('.dropzone').dropzone({
-  // only allow element with classname draggable
-  accept: '.draggable',
-  // minimum 75% element overlap for a drop
-  overlap: 0.75,
-  // on drop listener
-  ondrop: function (event) {
-    const target = event.relatedTarget;
-    // target.textContent = 'Dropped';
-    target.style.backgroundColor = 'red';
-  },
-  // on drag lave
-  ondragleave: function (event) {
-    const target = event.relatedTarget;
-    // target.textContent = 'drag me';
-    target.style.backgroundColor = 'rgb(124, 124, 124)';
-  },
-});
