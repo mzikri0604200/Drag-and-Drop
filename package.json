@@ -1,0 +1,30 @@
+{
+  "name": "tes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mzikri0604200/Drag-and-Drop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mzikri0604200/Drag-and-Drop/issues"
+  },
+  "homepage": "https://github.com/mzikri0604200/Drag-and-Drop#readme",
+  "dependencies": {
+    "@bnnvara/videojs-chrome-pip": "^0.0.4",
+    "@filmgardi/videojs-next-episode": "^1.0.2",
+    "videojs-hls-quality-selector": "^1.1.4",
+    "videojs-overlay": "^2.1.4",
+    "videojs-pip": "^1.0.3",
+    "videojs-playlist": "^4.3.1",
+    "videojs-playlist-thumbs": "^0.1.5",
+    "videojs-related": "^0.0.1",
+    "videojs-upnext-card": "^2.2.3"
+  }
+}
