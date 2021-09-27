@@ -9,64 +9,125 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
 
-    <!-- Video.JS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous" />
-    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" />
-    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
-    <link rel="stylesheet" href="videojs-resolution-switcher.css" />
-    <!-- <link href="https://unpkg.com/videojs-max-quality-selector/dist/videojs-max-quality-selector.css" rel="stylesheet" /> -->
+    <!-- <link href="https://cdn.plyr.io/2.0.7/demo.css" rel="stylesheet" /> -->
+    <link href="https://cdn.plyr.io/2.0.7/plyr.css" rel="stylesheet" />
 
     <!-- ...videojs style code, etc. -->
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body style="height: 18000px">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12">
-          <div class="live-streaming my-3">
-            <!-- <video id="video" class="video-js vjs-big-play-centered">
-              <source src="https://vjs.zencdn.net/v/oceans.mp4?sd" type="video/mp4" label="SD" res="480" selected="true" />
-              <source src="https://vjs.zencdn.net/v/oceans.mp4?hd" type="video/mp4" label="HD" res="1080" />
-              <source src="https://vjs.zencdn.net/v/oceans.mp4?phone" type="video/mp4" label="phone" res="144" />
-              <source src="https://vjs.zencdn.net/v/oceans.mp4?4k" type="video/mp4" label="4k" res="2160" />
-            </video> -->
-            <video id="video" class="video-js vjs-big-play-centered" muted controls data-setup="{}">
-              <source src="https://vjs.zencdn.net/v/oceans.mp4?sd" type="video/mp4" label="SD" res="480" />
-              <source src="https://vjs.zencdn.net/v/oceans.mp4?hd" type="video/mp4" label="HD" res="1080" />
-              <source src="https://vjs.zencdn.net/v/oceans.mp4?phone" type="video/mp4" label="phone" res="144" />
-              <source src="https://vjs.zencdn.net/v/oceans.mp4?4k" type="video/mp4" label="4k" res="2160" />
+        <div class="col-lg-9">
+          <div class="container">
+            <video id="player" poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" controls crossorigin>
+              <!-- Video files -->
+              <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
             </video>
           </div>
-
-          <a href="index.html" class="btn btn-primary">Video1</a>
-          <a href="video2.html" class="btn btn-primary">Video2</a>
-          <a href="video3.html" class="btn btn-primary">Video3</a>
         </div>
       </div>
     </div>
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
-    <script src="videojs-resolution-switcher.js"></script>
-    <!-- <script src="https://unpkg.com/videojs-max-quality-selector/dist/videojs-max-quality-selector.min.js"></script> -->
-
+    <script src="https://cdn.plyr.io/2.0.7/plyr.js"></script>
     <script>
-      // var player = videojs('video', {
-      //   autoplay: 'muted',
-      //   controls: true,
-      //   loop: true,
-      //   fluid: true,
-      //   playbackRates: [0.25, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4],
-      // });
-      var player = videojs('video', {
-        autoplay: 'muted',
-        plugins: {
-          videoJsResolutionSwitcher: {
-            default: 'high',
-            dynamicLabel: true,
-          },
-        },
-      });
+      //following defines the custom controls html.  note the first two divs are not standard, but are included to take advantage of the control hiding
+      var controls = [
+        `<div class='title'>This is some text</div>
+
+        <div class='wrap-list bg-white' id='wrap-list'>
+          <div class='d-flex flex-row'>
+            <div class='close-thumb'>
+              <button type="button" class="close text-white" onclick="closeNav()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="list-thumb">
+              <div class="card bg-dark text-white border-0 mb-1">
+                <img src="https://images.unsplash.com/photo-1631480221808-3ace08e829f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" class="card-img" alt="card-img">
+                <div class="card-img-overlay">
+                  <p class="card-text">This is a wider card with supporting text below as a natural</p>
+                </div>
+              </div>
+              <div class="card bg-dark text-white border-0 mb-1">
+                <img src="https://images.unsplash.com/photo-1631480221808-3ace08e829f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" class="card-img" alt="card-img">
+                <div class="card-img-overlay">
+                  <p class="card-text">This is a wider card with supporting text below as a natural</p>
+                </div>
+              </div>
+              <div class="card bg-dark text-white border-0 mb-1">
+                <img src="https://images.unsplash.com/photo-1631480221808-3ace08e829f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" class="card-img" alt="card-img">
+                <div class="card-img-overlay">
+                  <p class="card-text">This is a wider card with supporting text below as a natural</p>
+                </div>
+              </div>
+              <div class="card bg-dark text-white border-0 mb-1">
+                <img src="https://images.unsplash.com/photo-1631480221808-3ace08e829f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" class="card-img" alt="card-img">
+                <div class="card-img-overlay">
+                  <p class="card-text">This is a wider card with supporting text below as a natural</p>
+                </div>
+              </div>
+              <div class="spacer"></div>
+            </div>
+           </div>
+
+        </div>
+
+        <div class='plyr__controls' id='control'>
+          <button type='button' data-plyr='play'><svg><use xlink:href='#plyr-play'></use></svg><span class='plyr__sr-only'>Play</span></button>
+          <button type='button' data-plyr='pause'><svg><use xlink:href='#plyr-pause'></use></svg><span class='plyr__sr-only'>Pause</span></button>
+          <span class='plyr__time'>
+            <span class='plyr__sr-only'>Current time</span><span class='plyr__time--current'>00:00</span>
+          </span>
+          <span class='plyr__progress'>
+            <label for='seek{id}' class='plyr__sr-only'>Seek</label>
+            <input id='seek{id}' class='plyr__progress--seek' type='range' min='0' max='100' step='0.1' value='0' data-plyr='seek'>
+            <progress class='plyr__progress--played' max='100' value='0' role='presentation'></progress>
+            <progress class='plyr__progress--buffer' max='100' value='0'><span>0</span>% buffered</progress>
+            <span class='plyr__tooltip'>00:00</span>
+          </span>
+          <span class='plyr__time'>
+            <span class='plyr__sr-only'>Duration</span>
+            <span class='plyr__time--duration'>00:00</span>
+          </span>
+          <button type='button' data-plyr='mute'><svg class='icon--muted'><use xlink:href='#plyr-muted'></use></svg><svg><use xlink:href='#plyr-volume'></use></svg>
+            <span class='plyr__sr-only'>Toggle Mute</span>
+          </button>
+          <span class='plyr__volume'>
+            <label for='volume{id}' class='plyr__sr-only'>Volume</label>
+            <input id='volume{id}' class='plyr__volume--input' type='range' min='0' max='10' value='5' data-plyr='volume'>
+            <progress class='plyr__volume--display' max='10' value='0' role='presentation'></progress>
+          </span>
+          <button type='button' data-plyr='captions'><svg class='icon--captions-on'><use xlink:href='#plyr-captions-on'></use></svg><svg><use xlink:href='#plyr-captions-off'></use></svg>
+            <span class='plyr__sr-only'>Toggle Captions</span>
+          </button>
+          <button type='button' data-plyr='fullscreen'><svg class='icon--exit-fullscreen'><use xlink:href='#plyr-exit-fullscreen'></use></svg><svg><use xlink:href='#plyr-enter-fullscreen'></use></svg>
+            <span class='plyr__sr-only'>Toggle Fullscreen</span>
+          </button>
+        </div>`,
+      ].join('');
+
+      (function () {
+        // pass the controls variable to the html config attribute
+        var instances = plyr.setup({
+          html: controls,
+        });
+        if (instances == 'paused') {
+          document.getElementById('wrap-list').style.display = 'block';
+        }
+      })();
+
+      $('.spacer').css('height', $('#control').height() + 10);
+
+      function closeNav() {
+        document.getElementById('wrap-list').style.display = 'none';
+      }
     </script>
+
+    <script src="main.js"></script>
   </body>
 </html>
