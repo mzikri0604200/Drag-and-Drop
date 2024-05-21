@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Wizard</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<style>
+		.form-wizard {
+			color: #888888;
+			padding: 8px 30px;
+		}
+
+		.form-wizard .wizard-fieldset {
+			display: none;
+		}
+
+		.form-wizard .wizard-fieldset.show {
+			display: block;
+		}
+
+		.form-wizard .wizard-form-error {
+			display: none;
+			background-color: #d70b0b;
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			height: 2px;
+			width: 100%;
+		}
+
+		.form-wizard .form-wizard-steps {
+			margin: 30px 0;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: center;
+
+		}
+
+		
+		/* .form-wizard .form-wizard-steps li::after {
+			background-color: #f3f3f3;
+			content: "";
+			height: 15px;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 100%;
+			border-bottom: 3px solid #dddddd;
+			border-top: 3px solid #dddddd;
+		} */
+
+		
+
+		.form-wizard .form-wizard-steps li span {
+			background-color: #dddddd;
+			border-radius: 50%;
+			display: inline-block;
+			height: 40px;
+			line-height: 40px;
+			position: relative;
+			text-align: center;
+			width: 40px;
+			z-index: 1;
+			margin-right: 5px;
+		}
+
+		/* .form-wizard .form-wizard-steps li:last-child::after {
+			width: 100%;
+			background-color: blue;
+		} */
+
+		.form-wizard .form-wizard-steps li.active span,
+		.form-wizard .form-wizard-steps li.activated span {
+			background-color: red;
+			color: #ffffff;
+		}
+
+		.form-wizard .form-wizard-steps li.active::after,
+		.form-wizard .form-wizard-steps li.activated::after {
+			background-color: green;
+			left: 0%;
+			width: 100%;
+		}
+
+		.form-wizard .form-wizard-steps li.activated::after {
+			width: 100%;
+		}
+
+
+		/* .form-wizard .form-wizard-steps ul {
+			display: flex;
+			flex-direction: row;
+		} */
+		.form-wizard .form-wizard-steps li {
+			display: flex;
+			flex-direction: row;
+			position: relative;
+			margin-bottom: 12px;
+			/* padding: 8px; */
+			/* background-color: aqua; */
+		}
+
+
+		.form-wizard .form-wizard-steps li > small {
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.form-wizard .form-wizard-steps li small::after {
+			background-color: purple;
+			content: "";
+			color: #d70b0b;
+			height: 3px;
+			display: inline-block;
+			/* left: 0px; */
+			/* position: absolute; */
+			/* right: 0; */
+			/* top: 50%; */
+			/* transform: translateY(-50%); */
+			width: 100px;
+			margin: 0 5px ;
+			margin-top: 3px;
+			/* border-bottom: 1px solid #dddddd;
+			border-top: 1px solid #dddddd; */
+		}
+
+		.form-wizard .form-wizard-steps li:last-child small::after {
+			width: 0px;
+		}
+
+		/* .form-wizard .form-wizard-steps li:last-child::after {
+			left: 0;
+		} */
+	</style>
+</head>
+
+<body>
+	<section class="wizard-section">
+		<div class="row no-gutters">
+			<div class="col-lg-12 col-md-12">
+				<div class="form-wizard">
+					<form action="" method="post" role="form">
+						<div class="form-wizard-header">
+							<ul class="list-unstyled form-wizard-steps clearfix">
+								<li class="active">
+									<span>1</span>
+									<small>Address Form</small>
+								</li>
+								<li>
+									<span>2</span>
+									<small>Order Form</small>
+								</li>
+								<li>
+									<span>3</span>
+									<small>Customer Form</small>
+								</li>
+							</ul>
+						</div>
+						<fieldset class="wizard-fieldset show">
+							<h5>Personal Information</h5>
+							<div class="form-group">
+								<input type="text" class="form-control wizard-required" id="fname">
+								<label for="fname" class="wizard-form-text-label">First Name*</label>
+								<div class="wizard-form-error"></div>
+							</div>
+							<div class="form-group clearfix">
+								<a href="javascript:;" class="form-wizard-next-btn float-right">Next</a>
+							</div>
+						</fieldset>
+						<fieldset class="wizard-fieldset">
+							<h5>Account Information</h5>
+							<div class="form-group">
+								<input type="email" class="form-control wizard-required" id="email">
+								<label for="email" class="wizard-form-text-label">Email*</label>
+								<div class="wizard-form-error"></div>
+							</div>
+							<div class="form-group clearfix">
+								<a href="javascript:;" class="form-wizard-previous-btn float-left">Previous</a>
+								<a href="javascript:;" class="form-wizard-next-btn float-right">Next</a>
+							</div>
+						</fieldset>
+						<fieldset class="wizard-fieldset">
+							<h5>Bank Information</h5>
+							<div class="form-group">
+								<input type="text" class="form-control wizard-required" id="bname">
+								<label for="bname" class="wizard-form-text-label">Bank Name*</label>
+								<div class="wizard-form-error"></div>
+							</div>
+							<div class="form-group clearfix">
+								<a href="javascript:;" class="form-wizard-previous-btn float-left">Previous</a>
+								<a href="javascript:;" class="form-wizard-next-btn float-right">Next</a>
+							</div>
+						</fieldset>
+						<fieldset class="wizard-fieldset">
+							<h5>Payment Information</h5>
+							<div class="form-group">
+								Payment Type
+								<div class="wizard-form-radio">
+									<input name="radio-name" id="mastercard" type="radio">
+									<label for="mastercard">Master Card</label>
+								</div>
+								<div class="wizard-form-radio">
+									<input name="radio-name" id="visacard" type="radio">
+									<label for="visacard">Visa Card</label>
+								</div>
+							</div>
+							<div class="form-group clearfix">
+								<a href="javascript:;" class="form-wizard-previous-btn float-left">Previous</a>
+								<a href="javascript:;" class="form-wizard-submit float-right">Submit</a>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	jQuery(document).ready(function () {
+		// click on next button
+		jQuery('.form-wizard-next-btn').click(function () {
+			var parentFieldset = jQuery(this).parents('.wizard-fieldset');
+			var currentActiveStep = jQuery(this).parents('.form-wizard').find('.form-wizard-steps .active');
+			var next = jQuery(this);
+			var nextWizardStep = true;
+			parentFieldset.find('.wizard-required').each(function () {
+				var thisValue = jQuery(this).val();
+
+				if (thisValue == "") {
+					jQuery(this).siblings(".wizard-form-error").slideDown();
+					nextWizardStep = false;
+				}
+				else {
+					jQuery(this).siblings(".wizard-form-error").slideUp();
+				}
+			});
+			if (nextWizardStep) {
+				next.parents('.wizard-fieldset').removeClass("show", "400");
+				currentActiveStep.removeClass('active').addClass('activated').next().addClass('active', "400");
+				next.parents('.wizard-fieldset').next('.wizard-fieldset').addClass("show", "400");
+				jQuery(document).find('.wizard-fieldset').each(function () {
+					if (jQuery(this).hasClass('show')) {
+						var formAtrr = jQuery(this).attr('data-tab-content');
+						jQuery(document).find('.form-wizard-steps .form-wizard-step-item').each(function () {
+							if (jQuery(this).attr('data-attr') == formAtrr) {
+								jQuery(this).addClass('active');
+								var innerWidth = jQuery(this).innerWidth();
+								var position = jQuery(this).position();
+								jQuery(document).find('.form-wizard-step-move').css({ "left": position.left, "width": innerWidth });
+							} else {
+								jQuery(this).removeClass('active');
+							}
+						});
+					}
+				});
+			}
+		});
+		//click on previous button
+		jQuery('.form-wizard-previous-btn').click(function () {
+			var counter = parseInt(jQuery(".wizard-counter").text());;
+			var prev = jQuery(this);
+			var currentActiveStep = jQuery(this).parents('.form-wizard').find('.form-wizard-steps .active');
+			prev.parents('.wizard-fieldset').removeClass("show", "400");
+			prev.parents('.wizard-fieldset').prev('.wizard-fieldset').addClass("show", "400");
+			currentActiveStep.removeClass('active').prev().removeClass('activated').addClass('active', "400");
+			jQuery(document).find('.wizard-fieldset').each(function () {
+				if (jQuery(this).hasClass('show')) {
+					var formAtrr = jQuery(this).attr('data-tab-content');
+					jQuery(document).find('.form-wizard-steps .form-wizard-step-item').each(function () {
+						if (jQuery(this).attr('data-attr') == formAtrr) {
+							jQuery(this).addClass('active');
+							var innerWidth = jQuery(this).innerWidth();
+							var position = jQuery(this).position();
+							jQuery(document).find('.form-wizard-step-move').css({ "left": position.left, "width": innerWidth });
+						} else {
+							jQuery(this).removeClass('active');
+						}
+					});
+				}
+			});
+		});
+		//click on form submit button
+		jQuery(document).on("click", ".form-wizard .form-wizard-submit", function () {
+			var parentFieldset = jQuery(this).parents('.wizard-fieldset');
+			var currentActiveStep = jQuery(this).parents('.form-wizard').find('.form-wizard-steps .active');
+			parentFieldset.find('.wizard-required').each(function () {
+				var thisValue = jQuery(this).val();
+				if (thisValue == "") {
+					jQuery(this).siblings(".wizard-form-error").slideDown();
+				}
+				else {
+					jQuery(this).siblings(".wizard-form-error").slideUp();
+				}
+			});
+		});
+		// focus on input field check empty or not
+		jQuery(".form-control").on('focus', function () {
+			var tmpThis = jQuery(this).val();
+			if (tmpThis == '') {
+				jQuery(this).parent().addClass("focus-input");
+			}
+			else if (tmpThis != '') {
+				jQuery(this).parent().addClass("focus-input");
+			}
+		}).on('blur', function () {
+			var tmpThis = jQuery(this).val();
+			if (tmpThis == '') {
+				jQuery(this).parent().removeClass("focus-input");
+				jQuery(this).siblings('.wizard-form-error').slideDown("3000");
+			}
+			else if (tmpThis != '') {
+				jQuery(this).parent().addClass("focus-input");
+				jQuery(this).siblings('.wizard-form-error').slideUp("3000");
+			}
+		});
+	});
+
+</script>
+
+</html>
