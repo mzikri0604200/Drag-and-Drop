@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fixed Layout Example</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+      }
+
+      .navbar {
+        background-color: #333;
+        color: white;
+        padding: 15px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+      }
+
+      .sidebar {
+        background-color: #444;
+        color: white;
+        width: 40%;
+        /* padding: 15px; */
+        position: fixed;
+        top: 50px; /* Adjust this based on the height of your navbar */
+        bottom: 50px; /* Adjust this based on the height of your footer */
+        /* overflow-y: auto; */
+        /* overflow: hidden; */
+      }
+
+      .sidebar img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: top;
+      }
+
+      .content {
+        margin-top: 50px; /* Adjust this based on the height of your navbar */
+        margin-left: 40%; /* Adjust this based on the width of your sidebar */
+        margin-bottom: 50px; /* Adjust this based on the height of your footer */
+        padding: 15px;
+        overflow-y: auto;
+        height: calc(100vh - 100px); /* Adjust this based on the height of your navbar and footer */
+        background-color: #f4f4f4;
+      }
+
+      .footer {
+        background-color: #333;
+        color: white;
+        padding: 15px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">Navbar</div>
+    <div class="sidebar">
+      <!-- <img src="https://placehold.co/500x500" alt="" /> -->
+      <!-- <img src="banner-register.png" alt="" /> -->
+      <img src="Group 22.png" alt="" />
+    </div>
+    <div class="content">
+      <h1>Content Area</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec eros eros. Ut aliquet vehicula felis, a feugiat risus ultricies vel. Proin ultricies odio vel sapien condimentum, in cursus mauris vehicula. Vivamus ac libero ut
+        urna tincidunt feugiat. Integer nec consectetur odio, ut ullamcorper mauris. Curabitur laoreet libero vitae orci aliquet, eget ultrices sem sagittis. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.
+      </p>
+    </div>
+    <div class="footer">Footer</div>
+  </body>
+</html>

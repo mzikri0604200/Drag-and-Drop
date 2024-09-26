@@ -5,8 +5,9 @@
 }
 
 body {
-  background-color: #ffce00;
+  background-color: black;
   font-family: 'Roboto', Helvetica, sans-serif;
+  overflow: hidden;
 }
 
 .app {
@@ -50,4 +51,27 @@ body {
 
   text-align: center;
   margin: 4px;
+}
+
+.seperator-wrapper {
+  width: 100%;
+}
+
+.seperator-wrapper .seperator {
+  width: 3000px;
+  height: 5px;
+  animation: rotate 3s infinite linear;
+}
+
+@keyframes rotate {
+  from {
+    background-position: -3000px;
+  }
+  to {
+    background-position: 0px;
+  }
+}
+
+.gradient {
+  background: linear-gradient(to right, #FE8C00 0%, #FE8C00 25%, #039 50%, #039 75%, #FE8C00 100%); /* W3C */
 }

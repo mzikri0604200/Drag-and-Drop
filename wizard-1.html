@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wizard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <style>
+      body {
+        background-color: black;
+        margin-top: 20px;
+      }
+
+      .wizard-progress {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        position: relative;
+      }
+
+      .wizard-progress .step {
+        display: table-cell;
+        text-align: center;
+        vertical-align: top;
+        overflow: visible;
+        position: relative;
+        color: orange;
+        font-weight: bold;
+      }
+
+      .wizard-progress .step:not(:last-child):before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 1rem;
+        background-color: blue;
+        height: 6px;
+        width: 100%;
+      }
+
+      .wizard-progress .step .node {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid white;
+        background-color: black;
+        border-radius: 50%;
+        height: 38px;
+        width: 38px;
+        position: relative;
+        top: 0px;
+        left: 50%;
+        font-size: 24px;
+        margin-left: -18px;
+        color: wheat;
+      }
+
+      .wizard-progress .step.complete:before {
+        background-color: red;
+      }
+
+      .wizard-progress .step.complete .node {
+        border-color: red;
+        color: white;
+        background-color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wizard-progress">
+      <div class="step complete">
+        <div class="node">1</div>
+        <p>Data Pelanggan & Lokasi Pemasangan</p>
+      </div>
+      <div class="step">
+        <div class="node">2</div>
+        <p>Grading</p>
+      </div>
+      <div class="step">
+        <div class="node">3</div>
+        <p>Treatment</p>
+      </div>
+      <div class="step">
+        <div class="node">4</div>
+        <p>Attributes</p>
+      </div>
+    </div>
+    <div class="carousel">
+      <div><img src="https://picsum.photos/300/200?random=1" /></div>
+      <div><img src="https://picsum.photos/300/200?random=2" /></div>
+      <div><img src="https://picsum.photos/300/200?random=3" /></div>
+      <div><img src="https://picsum.photos/300/200?random=4" /></div>
+      <div><img src="https://picsum.photos/300/200?random=5" /></div>
+      <div><img src="https://picsum.photos/300/200?random=6" /></div>
+    </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script>
+    $('.carousel').slick({
+      slidesToShow: 6,
+      dots: true,
+      // centerMode: true,
+    });
+  </script>
+</html>

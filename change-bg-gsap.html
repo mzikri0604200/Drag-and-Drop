@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Trigger(GSAP) Change Background</title>
+    <style>
+      .section,
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: solid 1px yellow;
+        margin-bottom: 50px;
+      }
+      .hero {
+        background-color: MediumSeaGreen;
+      }
+      .section0 {
+        background-color: SlateBlue;
+      }
+      .section1 {
+        background-color: DodgerBlue;
+      }
+      .section2 {
+        background-color: tomato;
+      }
+      .section3 {
+        background-color: gold;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        font-size: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">Hero</div>
+    <section data-color="red" class="section section0 sectiontrigger">Section 1</section>
+    <section class="section">Section 2</section>
+    <section data-color="red" class="section section1 sectiontrigger">Section 3</section>
+    <section class="section">Section 4</section>
+    <section data-color="red" class="section section2 sectiontrigger">Section 5</section>
+    <section class="section">Section 6</section>
+    <section data-color="red" class="section section3 sectiontrigger">Section 7</section>
+    <section class="section">Section 8</section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script>
+      console.clear();
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const sections = gsap.utils.toArray('.sectiontrigger');
+
+      sections.forEach(function (section, i) {
+        var color = section.getAttribute('data-color');
+        console.log(color);
+
+        gsap.to('body', {
+          backgroundColor: 'black',
+          ease: 'power1.inOut',
+          duration: 0.5,
+          color: 'white',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top center',
+            end: 'bottom center',
+            markers: true,
+            toggleActions: 'play reverse play reverse',
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
