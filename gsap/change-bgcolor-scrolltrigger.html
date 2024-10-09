@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scroll Trigger(GSAP) Change Background</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"
+      integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
 
     <style>
       .scroll-bgcolor section {
@@ -58,9 +64,128 @@
         background-size: cover;
         background-repeat: no-repeat;
       }
+
+      #preloader {
+        background: #000000 no-repeat center center;
+        background-size: 100%;
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        z-index: 1999;
+        /* background-image: url(images/loadersuper.gif); */
+        overflow: hidden;
+        touch-action: none;
+      }
+
+      .center-ring {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .ring {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        animation: ring 2s linear infinite;
+      }
+
+      .ring:before {
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+      }
+
+      span.spanloader {
+        color: #737373;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        line-height: 200px;
+        animation: text 3s ease-in-out infinite;
+        font-family: 'DinBold';
+      }
+
+      @keyframes text {
+        50% {
+          color: black;
+        }
+      }
+
+      @keyframes ring {
+        0% {
+          transform: rotate(0deg);
+          box-shadow: 1px 5px 2px #120e4b;
+        }
+
+        25% {
+          transform: rotate(90deg);
+          box-shadow: 1px 5px 2px #ffffff;
+        }
+
+        50% {
+          transform: rotate(180deg);
+          box-shadow: 1px 5px 2px #0456c8;
+        }
+
+        75% {
+          transform: rotate(270deg);
+          box-shadow: 1px 5px 2px #b30000;
+        }
+
+        100% {
+          transform: rotate(360deg);
+          box-shadow: 1px 5px 2px #2e2e2e;
+        }
+      }
+
+      #preloader-blue,
+      #preloader-black,
+      #preloader-red {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        cursor: none !important;
+      }
+      #preloader-red {
+        background: #d41e02;
+        z-index: 1995;
+      }
+      #preloader-blue {
+        background: #000875;
+        z-index: 1996;
+      }
+      #preloader-black {
+        background: #fa0192;
+        z-index: 1997;
+      }
+
+      .parallax-v2 {
+        transform-origin: top left !important;
+      }
     </style>
   </head>
   <body>
+    <div id="preloader">
+      <div class="center-ring">
+        <div class="ring"></div>
+        <span class="spanloader">loading...</span>
+      </div>
+    </div>
+
+    <div id="preloader-blue"></div>
+    <div id="preloader-black"></div>
+
     <section class="position-relative overflow-hidden">
       <div class="position-relative beforeImage w-100">
         <img class="w-100" src="https://assets.codepen.io/16327/before.jpg" alt="before" />
@@ -89,13 +214,6 @@
       </div>
     </section> -->
 
-    <section class="position-relative bg-primary">
-      <div class="parallax-v2 w-100 position-relative overflow-hidden" style="padding-top: 40%">
-        <img src="https://picsum.photos/1600/1000?r=0" class="position-absolute w-100 top-0 start-0 end-0 bottom-0 object-fit-cover" alt="img 1" />
-        <!-- <h1 class="position-absolute text-center d-flex justify-content-center align-items-center text-white fw-bold top-0 start-0 end-0 bottom-0 h-100 w-100" ="text-shadow: 4px 4px 6px rgba(66, 68, 90, 1)">So smooth though</h1> -->
-      </div>
-    </section>
-
     <section class="my-5">
       <div class="container">
         <div class="row">
@@ -106,6 +224,13 @@
             </h1>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="position-relative bg-primary h-100 w-100">
+      <div class="parallax-v2 w-100 position-relative overflow-hidden h-100" style="padding-top: 40%">
+        <img id="parallax-v2-img" src="https://picsum.photos/1600/1200?r=1" class="position-absolute w-100 top-0 start-0 end-0 bottom-0 object-fit-cover" alt="img 1" />
+        <h1 class="mb-0 position-absolute top-50 start-50 translate-middle col-lg-11 col-11 text-center lh-base text-warning fw-bold">Temukan Keunggulan PT Balitowerindo Sentra Tbk. untuk Masa Depan yang Terhubung.</h1>
       </div>
     </section>
 
@@ -135,6 +260,23 @@
     <script>
       gsap.registerPlugin(ScrollTrigger);
 
+      const opening = gsap.timeline();
+
+      // PRELOADER
+      paceOptions = {
+        ajax: true,
+        document: true,
+        eventLag: false,
+      };
+
+      Pace.on('done', () => {
+        console.log('done');
+        opening
+          .to('#preloader', { opacity: 0, ease: Expo.easeInOut, display: 'none' })
+          .to('#preloader-black', { yPercent: -110, ease: Expo.easeInOut, duration: 1.7 }, '-=1')
+          .to('#preloader-blue', { yPercent: -110, ease: Expo.easeInOut, duration: 1.7 }, '-=1.22');
+      });
+
       const splitTypes = document.querySelectorAll('.reveal-type');
       splitTypes.forEach((char, i) => {
         const bg = char.dataset.bgColor;
@@ -155,10 +297,10 @@
             stagger: 50,
             scrollTrigger: {
               trigger: char,
-              start: 'top 80%',
-              end: 'top 15%',
+              start: 'top 45%',
+              end: 'top 8%',
               scrub: true,
-              markers: false,
+              markers: true,
               // toggleActions: 'play play reverse reverse'
             },
           }
@@ -235,13 +377,13 @@
       });
 
       tl.fromTo(
-        '.parallax-v2 img',
+        '#parallax-v2-img',
         {
-          yPercent: -100,
+          yPercent: -80,
           ease: 'none',
         },
         {
-          yPercent: 50,
+          yPercent: 10,
           ease: 'none',
         }
       );
