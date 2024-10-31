@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaflet Animated Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <style>
+      #map {
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+      // Initialize the map
+      const map = L.map('map').setView([-5.354910308045879, 105.5492493318302], 6);
+
+      // Add OpenStreetMap tile layer
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+
+      // Define the path for the marker
+      const path = [
+        { lat: -5.354910308045879, lng: 105.5492493318302 },
+        { lat: -1.4734006644440236, lng: 102.56096802933453 },
+        { lat: 0.3142094054670293, lng: 101.67407282100736 },
+        { lat: 3.5638148631627327, lng: 97.96025050108476 },
+        { lat: 3.5638148631627327, lng: 97.96025050108476 },
+        { lat: 5.552888397508299, lng: 95.35503184095697 },
+        { lat: 0.4843956937783442, lng: 101.46600351365991 },
+        { lat: -2.719974444734501, lng: 106.39429088041243 },
+        { lat: -0.004112084917832862, lng: 109.33774019295711 },
+        { lat: 5.3871916196753515, lng: 116.7699759984098 },
+        { lat: 0.5727046660917938, lng: 116.40369195362476 },
+        { lat: -3.2881996524865205, lng: 114.80240612797118 },
+        { lat: -5.1998116163738874, lng: 119.83317574778658 },
+        { lat: -0.8565683704689628, lng: 119.92639783483456 },
+        { lat: 1.504852792746596, lng: 124.96039053542574 },
+        { lat: -1.4313208992941426, lng: 121.6354694307143 },
+        { lat: -4.11582888290898, lng: 122.25412548349973 },
+        { lat: -0.16493722094706031, lng: 131.03265740930036 },
+        { lat: -5.697559143573285, lng: 140.49994468500992 },
+        { lat: -10.165234604764535, lng: 123.84009403989239 },
+        { lat: -8.724593857203299, lng: 121.15219053000882 },
+        { lat: -8.724593857203299, lng: 121.15219053000882 },
+        { lat: -9.721430434593993, lng: 119.78493325330504 },
+        { lat: -8.474749405644186, lng: 118.91303097284124 },
+        { lat: -8.681154519882098, lng: 117.19916375523343 },
+        { lat: -8.692014826643074, lng: 115.51825552257962 },
+        { lat: -8.137746364612779, lng: 114.04608760922025 },
+        { lat: -8.137746364612779, lng: 114.04608760922025 },
+        { lat: -7.931055176096666, lng: 112.7057555544244 },
+        { lat: -7.462900733436124, lng: 110.64032583064062 },
+        { lat: -7.648046706733388, lng: 109.16815793368616 },
+        { lat: -6.767374849178862, lng: 108.08431851636637 },
+      ];
+
+      // Create a marker
+      const marker = L.marker(path[0]).addTo(map);
+
+      // Animation variables
+      let startTime;
+      const duration = 20000; // Duration of the animation in milliseconds
+
+      // map.flyTo([45.2403, -123.8512], 14, {
+      //   animate: true,
+      //   duration: 1.5,
+      // });
+
+      function animateMarker(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+
+        // Calculate the current position based on the elapsed time
+        const progress = Math.min(elapsed / duration, 1);
+        const currentIndex = Math.floor(progress * (path.length - 1));
+        const nextIndex = Math.min(currentIndex + 1, path.length - 1);
+
+        const currentPos = path[currentIndex];
+        const nextPos = path[nextIndex];
+
+        // Interpolate the marker position
+        const lat = currentPos.lat + (nextPos.lat - currentPos.lat) * (progress * (path.length - 1) - currentIndex);
+        const lng = currentPos.lng + (nextPos.lng - currentPos.lng) * (progress * (path.length - 1) - currentIndex);
+
+        // Update marker position
+        // marker.setLatLng([lat, lng]);
+
+        // Center the map on the marker
+        map.setView([lat, lng]);
+
+        console.log(progress);
+
+        // Continue animation if not finished
+        if (progress < 1) {
+          requestAnimationFrame(animateMarker);
+        }
+      }
+
+      // Start the animation
+      requestAnimationFrame(animateMarker);
+    </script>
+  </body>
+</html>
