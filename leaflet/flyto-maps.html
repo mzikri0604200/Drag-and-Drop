@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaflet Animated Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <style>
+      #map {
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+      var startPoint = [-1.6035957738029814, 121.17981660125652];
+      var map = L.map('map').setView(startPoint, 5);
+
+      //var osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+      var googleTerrain = new L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+      }).addTo(map);
+      var first = false;
+      var points = [
+        { point: [-6.2174850131552954, 106.98815085849772], zoom: 8 },
+        { point: [0.5050142028909912, 101.51456316806654], zoom: 8 },
+        { point: [5.568759439474531, 95.52071752364023], zoom: 8 },
+        { point: [3.5826476732246655, 98.82894192682934], zoom: 8 },
+        { point: [-3.0037049667003286, 104.92497490826482], zoom: 8 },
+        { point: [0.060038667369090776, 109.81218209751081], zoom: 8 },
+        { point: [5.870419693931417, 118.19463007265017], zoom: 8 },
+        { point: [0.4976699509222017, 116.41081599607044], zoom: 8 },
+        { point: [-3.3704404756772477, 115.1924058605422], zoom: 8 },
+        { point: [-5.153014982303557, 119.90288244987339], zoom: 8 },
+        { point: [-0.8872615822201187, 120.10486360299495], zoom: 8 },
+        { point: [1.474166399075806, 125.26315241965011], zoom: 8 },
+        { point: [-0.8406558723852658, 131.8819204693181], zoom: 8 },
+        { point: [-5.740753006587717, 140.5671114878533], zoom: 8 },
+        { point: [-8.775829829595843, 120.768307644889], zoom: 8 },
+        { point: [-7.238964914499832, 113.34066310469109], zoom: 8 },
+        { point: [-6.918087071134729, 107.47430190156852], zoom: 8 },
+        { point: startPoint, zoom: 5 },
+      ];
+
+      var duration = 3;
+      var index = 0;
+      googleTerrain.on('load', function (e) {
+        if (first) return;
+        first = true;
+        animation();
+      });
+
+      function animation() {
+        if (index >= points.length) return;
+        console.log(index);
+        var timeout = index == 0 ? 500 : duration * 1000 + 850;
+        console.log('timeout', timeout);
+        var point = points[index].point;
+        var zoom = points[index].zoom;
+        setTimeout(function () {
+          fly(point, zoom);
+        }, timeout);
+
+        index++;
+      }
+
+      function fly(position, zoom) {
+        console.log('flyyy');
+        //map.flyTo(position,zoom,{pan:{easeLinearity: 1}});
+        map.flyTo(position, zoom, { duration: duration, easeLinearity: 1 });
+        animation();
+      }
+    </script>
+  </body>
+</html>
