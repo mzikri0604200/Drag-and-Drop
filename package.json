@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/mzikri0604200/Drag-and-Drop#readme",
   "dependencies": {
-    "videojs-hls-quality-selector": "^1.1.4"
+    "@sjmc11/tourguidejs": "^0.0.19",
+    "videojs-hls-quality-selector": "^1.1.4",
+    "xbs-enjoyhint": "^4.0.6"
   }
 }
