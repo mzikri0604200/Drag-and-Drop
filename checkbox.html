@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container">
+      <label><input type="checkbox" class="check-group-1" id="checkbox-1-1" /> 1</label>
+      <label><input type="checkbox" class="check-group-1" id="checkbox-1-2" /> 2</label>
+      <label><input type="checkbox" class="check-group-1" id="checkbox-1-3" /> 3</label>
+      <label><input type="checkbox" class="check-group-1" id="checkbox-1-4" /> 4</label>
+      <label><input type="checkbox" class="check-group-1" id="checkbox-1-5" /> 5</label>
+      <label><input type="checkbox" class="check-group-1" id="checkbox-1-6" /> 6</label>
+      <label><input type="checkbox" class="check-group-1" id="checkbox-1-7" /> 7</label>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        var groupCounter = 1;
+        var checkboxCounter = 7; // Mulai dari 7 karena sudah ada 7 checkbox awal
+
+        function generateUniqueId() {
+          checkboxCounter++;
+          return 'checkbox-' + groupCounter + '-' + checkboxCounter;
+        }
+
+        function addCheckboxes() {
+          groupCounter++;
+          var newGroup = $('<div id="group-' + groupCounter + '"></div>');
+          for (var i = 1; i <= 7; i++) {
+            var uniqueId = generateUniqueId();
+            newGroup.append('<label><input type="checkbox" class="check-group-' + groupCounter + '" id="' + uniqueId + '"> ' + i + '</label>');
+          }
+          $('#container').append(newGroup);
+        }
+
+        function removeCheckboxes() {
+          if (groupCounter > 1) {
+            $('#group-' + groupCounter).remove();
+            groupCounter--;
+          }
+        }
+
+        $(document).on('change', '.check-group-1', function () {
+          var checkedCount = $('.check-group-1:checked').length;
+          if (checkedCount % 7 === 0 && checkedCount > 0) {
+            addCheckboxes();
+            $(document).off('change', '.check-group-1');
+            $(document).on('change', '.check-group-' + groupCounter, function () {
+              checkAndManage();
+            });
+          } else if (checkedCount % 7 !== 0 && checkedCount !== 0) {
+            removeCheckboxes();
+            $(document).off('change', '.check-group-1');
+            $(document).on('change', '.check-group-' + groupCounter, function () {
+              checkAndManage();
+            });
+          }
+        });
+
+        function checkAndManage() {
+          var checkedCount = $('.check-group-' + groupCounter + ':checked').length;
+          if (checkedCount % 7 === 0 && checkedCount > 0) {
+            addCheckboxes();
+            $(document).off('change', '.check-group-' + (groupCounter - 1));
+            $(document).on('change', '.check-group-' + groupCounter, function () {
+              checkAndManage();
+            });
+          } else if (checkedCount % 7 !== 0 && groupCounter > 1) {
+            removeCheckboxes();
+            $(document).off('change', '.check-group-' + groupCounter);
+            $(document).on('change', '.check-group-' + groupCounter, function () {
+              checkAndManage();
+            });
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
